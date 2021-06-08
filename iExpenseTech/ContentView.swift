@@ -7,10 +7,22 @@
 
 import SwiftUI
 
+struct User {
+  var firstName = "Bilbo"
+  var lastName = "Baggins"
+}
+
 struct ContentView: View {
+  @State private var user = User()
+  
   var body: some View {
-    Text("Hello, world!")
-      .padding()
+    VStack {
+      Text("Your name is \(user.firstName) \(user.lastName)")
+      TextField("First name", text: $user.firstName)
+        .padding(10)
+      TextField("Last name", text: $user.lastName)
+        .padding(10)
+    }
   }
 }
 
