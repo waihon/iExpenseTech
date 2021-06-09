@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct SecondView: View {
-  var name: String
+  @Environment(\.presentationMode) var presentationMode
   
   var body: some View {
-    Text("Hello, \(name)!")
+    Button("Dismiss") {
+      self.presentationMode.wrappedValue.dismiss()
+    }
   }
 }
 
@@ -27,7 +29,7 @@ struct ContentView: View {
     // 3. Attch our sheet somewhere to our view hierarchy
     .sheet(isPresented: $showingSheet) {
       // 4. Define what should actually be in the sheet
-      SecondView(name: "@twostraws")
+      SecondView()
     }
   }
 }
