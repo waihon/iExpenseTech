@@ -7,21 +7,25 @@
 
 import SwiftUI
 
-class User: ObservableObject {
-  @Published var firstName = "Bilbo"
-  @Published var lastName = "Baggins"
+struct SecondView: View {
+  var body: some View {
+    Text("Second View")
+  }
 }
 
 struct ContentView: View {
-  @ObservedObject var user = User()
+  // 1. A state to track whether the sheet is showing
+  @State private var showingSheet = false
   
   var body: some View {
-    VStack {
-      Text("Your name is \(user.firstName) \(user.lastName)")
-      TextField("First name", text: $user.firstName)
-        .padding(10)
-      TextField("Last name", text: $user.lastName)
-        .padding(10)
+    Button("Show Sheet") {
+      // 2. Toggle the state when our button is tapped
+      self.showingSheet.toggle()
+    }
+    // 3. Attch our sheet somewhere to our view hierarchy
+    .sheet(isPresented: $showingSheet) {
+      // 4. Define what should actually be in the sheet
+      SecondView()
     }
   }
 }
