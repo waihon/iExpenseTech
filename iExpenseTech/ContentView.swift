@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct SecondView: View {
+  var name: String
+  
   var body: some View {
-    Text("Second View")
+    Text("Hello, \(name)!")
   }
 }
 
@@ -25,7 +27,7 @@ struct ContentView: View {
     // 3. Attch our sheet somewhere to our view hierarchy
     .sheet(isPresented: $showingSheet) {
       // 4. Define what should actually be in the sheet
-      SecondView()
+      SecondView(name: "@twostraws")
     }
   }
 }
